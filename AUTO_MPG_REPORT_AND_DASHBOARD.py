@@ -37,30 +37,11 @@ with tab1:
     st.sidebar.markdown("### Sidebar Controls")
     st.sidebar.markdown("Use the controls below to customize and filter the visualizations in the dashboard:")
 
-    st.sidebar.markdown("<h3 style='color:red;'>VIEW DATA & CORRELATION MATRIX</h3>", unsafe_allow_html=True)
+    st.sidebar.markdown("<h3 style='color:red;'>VIEW DATA</h3>", unsafe_allow_html=True)
     # Checkbox widget for displaying data
     checkbox = st.sidebar.checkbox("Reveal Data")
     if checkbox:
         st.dataframe(data)
-
-    # Checkbox for displaying correlation matrix
-    checkbox_corr = st.sidebar.checkbox("Show Correlation Matrix")
-    if checkbox_corr:
-        # Calculate correlation matrix
-        corr_matrix = data.corr()
-        # Create a heatmap using Plotly
-        fig_corr = go.Figure(data=go.Heatmap(
-                    z=corr_matrix.values,
-                    x=corr_matrix.columns,
-                    y=corr_matrix.columns,
-                    hoverongaps=False,
-                    colorscale='Viridis'))
-        fig_corr.update_layout(title="Correlation Matrix",
-                            xaxis_title="Attributes",
-                            yaxis_title="Attributes")
-        st.markdown("### Correlation Matrix")
-        st.markdown("Explore how different attributes correlate with each other. Hover over the heatmap to see the exact correlation values.")
-        st.plotly_chart(fig_corr)
 
     st.sidebar.markdown("<h3 style='color:red;'>DATA FILTER</h3>", unsafe_allow_html=True)
     # Sidebar setup for filtering by Manufacturer
